@@ -1,0 +1,61 @@
+<template>
+  <div class="page" data-name="akun">
+    <div class="navbar">
+      <div class="navbar-bg"></div>
+      <div class="navbar-inner sliding">
+        <div class="title tes">Akun</div>
+      </div>
+    </div>
+    <div class="page-content">
+      <div class="block-title">Menu</div>
+      <div class="list">
+        <ul>
+          <li>
+            <a href="/detail-akun/" class="item-content item-link">
+              <div class="item-inner">
+                <div class="item-title">Detail Akun</div>
+              </div>
+            </a>
+          </li>
+          <li>
+            <a href="/input-perizinan/" class="item-content item-link">
+              <div class="item-inner">
+                <div class="item-title">Input Perizinan</div>
+              </div>
+            </a>
+          </li>
+          <li>
+            <a href="/cek-izin/" class="item-content item-link">
+              <div class="item-inner">
+                <div class="item-title">Cek Izin</div>
+              </div>
+            </a>
+          </li>
+          <li>
+            <a href="#" class="item-content item-link logout-button">
+              <div class="item-inner">
+                <div class="item-title">Logout</div>
+              </div>
+            </a>
+          </li>
+        </ul>
+      </div>
+    </div>
+  </div>
+</template>
+<script>
+  export default (props, { $f7, $on, $f7route }) => {
+    // console.log(app);
+    $on("pageInit", function (page) {
+      $(".logout-button").on("click", function () {
+        $f7.dialog.alert("logout");
+        localStorage.clear();
+        localStorage.setItem("login", false);
+
+        $(".akun").addClass("login-screen-open");
+        $('[href="#view-home"]').click();
+      });
+    });
+    return $render;
+  };
+</script>

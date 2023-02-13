@@ -1,0 +1,415 @@
+<template>
+  <div class="page">
+    <div class="navbar">
+      <div class="navbar-bg"></div>
+      <div class="navbar-inner">
+        <div class="left">
+          <a class="link back" @click="${btnBack}">
+            <i class="icon icon-back"></i>
+            <span class="if-not-md">Back</span>
+          </a>
+        </div>
+        <div class="title">${title}</div>
+      </div>
+    </div>
+    <div class="page-content">
+      <form id="my-form">
+        <div class="block-title">Jenis Pendaftaran Izin</div>
+        <div class="list">
+          <ul>
+            <li @click="${hidePerpanjangan}">
+              <label class="item-radio item-content">
+                <input
+                  type="radio"
+                  name="jenis_izin"
+                  value="baru"
+                  checked="checked"
+                />
+                <i class="icon icon-radio"></i>
+                <div class="item-inner">
+                  <div class="item-title">Izin Reklame Baru</div>
+                </div>
+              </label>
+            </li>
+            <li @click="${showPerpanjangan}">
+              <label class="item-radio item-content">
+                <input type="radio" name="jenis_izin" value="perpanjangan" />
+                <i class="icon icon-radio"></i>
+                <div class="item-inner">
+                  <div class="item-title">Izin Reklame Perpanjangan</div>
+                </div>
+              </label>
+            </li>
+          </ul>
+        </div>
+        <div class="block-title">Form Perizinan</div>
+        <div class="list no-hairlines-md">
+          <ul>
+            <li style="display: none">
+              <div class="item-content item-input">
+                <div class="item-inner">
+                  <div class="item-title item-label">Status</div>
+                  <div class="item-input-wrap">
+                    <input
+                      name="status"
+                      type="text"
+                      placeholder="status"
+                      value="diproses"
+                      readonly
+                    />
+                  </div>
+                </div>
+              </div>
+            </li>
+            <li style="display: none">
+              <div class="item-content item-input">
+                <div class="item-inner">
+                  <div class="item-title item-label">Username</div>
+                  <div class="item-input-wrap">
+                    <input
+                      name="username"
+                      type="text"
+                      placeholder="Username"
+                      value="${dataUser.username}"
+                      readonly
+                    />
+                  </div>
+                </div>
+              </div>
+            </li>
+            <li>
+              <div class="item-content item-input">
+                <div class="item-inner">
+                  <div class="item-title item-label">NIK</div>
+                  <div class="item-input-wrap">
+                    <input name="nik" type="text" placeholder="Masukkan NIK" />
+                  </div>
+                </div>
+              </div>
+            </li>
+            <li>
+              <div class="item-content item-input">
+                <div class="item-inner">
+                  <div class="item-title item-label">Nama Pemohon</div>
+                  <div class="item-input-wrap">
+                    <input
+                      name="nama"
+                      type="text"
+                      placeholder="Masukkan Nama"
+                      value="${dataUser.fullname}"
+                    />
+                  </div>
+                </div>
+              </div>
+            </li>
+            <li>
+              <div class="item-content item-input">
+                <div class="item-inner">
+                  <div class="item-title item-label">Nomor Izin</div>
+                  <div class="item-input-wrap">
+                    <input
+                      name="nomor_surat"
+                      type="text"
+                      placeholder="Nomor Izin"
+                      value="${nomor_surat}"
+                      readonly
+                    />
+                  </div>
+                </div>
+              </div>
+            </li>
+            <li>
+              <div class="item-content item-input">
+                <div class="item-inner">
+                  <div class="item-title item-label">Alamat</div>
+                  <div class="item-input-wrap">
+                    <input name="alamat" type="text" placeholder="Alamat" />
+                  </div>
+                </div>
+              </div>
+            </li>
+            <li class="item-content item-input">
+              <div class="item-inner">
+                <div class="item-title item-label">Lama Pemasangan</div>
+                <div class="item-input-wrap input-dropdown-wrap">
+                  <select name="lama_pemasangan" placeholder="Please choose...">
+                    <option value="1 TAHUN">1 TAHUN</option>
+                    <option value="2 TAHUN">2 TAHUN</option>
+                    <option value="3 TAHUN">3 TAHUN</option>
+                    <option value="4 TAHUN">4 TAHUN</option>
+                    <option value="5 TAHUN">5 TAHUN</option>
+                  </select>
+                </div>
+              </div>
+            </li>
+            <li>
+              <div class="item-content item-input">
+                <div class="item-inner">
+                  <div class="item-title item-label">
+                    Upload Surat Permohonan
+                  </div>
+                  <div class="item-input-wrap">
+                    <input
+                      name="surat_permohonan"
+                      type="text"
+                      style="display: none"
+                    />
+                    <input
+                      type="file"
+                      id="surat_permohonan"
+                      @change="${uploadData}"
+                    />
+                  </div>
+                </div>
+              </div>
+            </li>
+            <li>
+              <div class="item-content item-input">
+                <div class="item-inner">
+                  <div class="item-title item-label">Upload Gambar KTP</div>
+                  <div class="item-input-wrap">
+                    <input name="ktp" type="text" style="display: none" />
+                    <input type="file" id="ktp" @change="${uploadData}" />
+                  </div>
+                </div>
+              </div>
+            </li>
+            <li>
+              <div class="item-content item-input">
+                <div class="item-inner">
+                  <div class="item-title item-label">
+                    Upload Akta Pendirian/Perubahan
+                  </div>
+                  <div class="item-input-wrap">
+                    <input name="akta" type="text" style="display: none" />
+                    <input type="file" id="akta" @change="${uploadData}" />
+                  </div>
+                </div>
+              </div>
+            </li>
+            <li>
+              <div class="item-content item-input">
+                <div class="item-inner">
+                  <div class="item-title item-label">Upload Surat Tanah</div>
+                  <div class="item-input-wrap">
+                    <input
+                      name="surat_tanah"
+                      type="text"
+                      style="display: none"
+                    />
+                    <input
+                      type="file"
+                      id="surat_tanah"
+                      @change="${uploadData}"
+                    />
+                  </div>
+                </div>
+              </div>
+            </li>
+            <li>
+              <div class="item-content item-input">
+                <div class="item-inner">
+                  <div class="item-title item-label">Upload Surat Sewa</div>
+                  <div class="item-input-wrap">
+                    <input
+                      name="surat_sewa"
+                      type="text"
+                      style="display: none"
+                    />
+                    <input
+                      type="file"
+                      id="surat_sewa"
+                      @change="${uploadData}"
+                    />
+                  </div>
+                </div>
+              </div>
+            </li>
+            <li>
+              <div class="item-content item-input">
+                <div class="item-inner">
+                  <div class="item-title item-label">Upload SKTU</div>
+                  <div class="item-input-wrap">
+                    <input name="sktu" type="text" style="display: none" />
+                    <input type="file" id="sktu" @change="${uploadData}" />
+                  </div>
+                </div>
+              </div>
+            </li>
+            <li>
+              <div class="item-content item-input">
+                <div class="item-inner">
+                  <div class="item-title item-label">Upload Denah Lokasi</div>
+                  <div class="item-input-wrap">
+                    <input name="lokasi" type="text" style="display: none" />
+                    <input type="file" id="lokasi" @change="${uploadData}" />
+                  </div>
+                </div>
+              </div>
+            </li>
+            <li>
+              <div class="item-content item-input">
+                <div class="item-inner">
+                  <div class="item-title item-label">Upload Gambar Reklame</div>
+                  <div class="item-input-wrap">
+                    <input
+                      name="gambar_reklame"
+                      type="text"
+                      style="display: none"
+                    />
+                    <input
+                      type="file"
+                      id="gambar_reklame"
+                      @change="${uploadData}"
+                    />
+                  </div>
+                </div>
+              </div>
+            </li>
+            <li>
+              <div class="item-content item-input">
+                <div class="item-inner">
+                  <div class="item-title item-label">Upload IMB</div>
+                  <div class="item-input-wrap">
+                    <input name="imb" type="text" style="display: none" />
+                    <input type="file" id="imb" @change="${uploadData}" />
+                  </div>
+                </div>
+              </div>
+            </li>
+            <li>
+              <div class="item-content item-input">
+                <div class="item-inner">
+                  <div class="item-title item-label">NPWPD</div>
+                  <div class="item-input-wrap">
+                    <input name="npwpd" type="text" style="display: none" />
+                    <input type="file" id="npwpd" @change="${uploadData}" />
+                  </div>
+                </div>
+              </div>
+            </li>
+            <li>
+              <div
+                class="item-content item-input input-upload-izin-terdahulu"
+                style="display: none"
+              >
+                <div class="item-inner">
+                  <div class="item-title item-label">Upload Izin Terdahulu</div>
+                  <div class="item-input-wrap">
+                    <input
+                      name="izin_terdahulu"
+                      type="text"
+                      style="display: none"
+                    />
+                    <input
+                      type="file"
+                      id="izin_terdahulu"
+                      @change="${uploadData}"
+                    />
+                  </div>
+                </div>
+              </div>
+            </li>
+          </ul>
+          <input
+            name="tanggal_dibuat"
+            type="text"
+            style="display: none"
+            value="${tanggal_dibuat}"
+          />
+        </div>
+        <div class="block block-strong">
+          <div class="row">
+            <div class="col-100">
+              <a
+                href="#"
+                class="button button-raised button-fill"
+                @click="${saveData}"
+                >Simpan Data</a
+              >
+            </div>
+          </div>
+        </div>
+      </form>
+    </div>
+  </div>
+</template>
+<!-- rest of component logic -->
+<script>
+  // script must return/export component function
+  export default (props, { $, $f7, $f7router, $on }) => {
+    const title = "Input Perizinan";
+    const dataUser = JSON.parse(localStorage.userdata);
+    const nomor_surat =
+      parseInt(new Date().valueOf()) + parseInt(Math.random(5));
+    const date = new Date();
+    const options = {
+      day: "2-digit",
+      month: "2-digit",
+      year: "numeric",
+    };
+    const tanggal_dibuat = new Intl.DateTimeFormat("id-ID", options).format(
+      date
+    );
+
+    const hidePerpanjangan = () => {
+      let i = $(".input-upload-izin-terdahulu").hide();
+      console.log(i);
+    };
+    const showPerpanjangan = () => {
+      let i = $(".input-upload-izin-terdahulu").show();
+      console.log(i);
+    };
+    const btnBack = () => {
+      $f7router.back();
+    };
+    const uploadData = (e) => {
+      $f7.preloader.show();
+      let idFile = e.target.id;
+      let folder = e.target.id;
+      let file = $("#" + idFile).prop("files")[0];
+      if (file == undefined)
+        return (
+          $f7.preloader.hide(),
+          $f7.dialog.alert(`Pilih gambar ${idFile} terlebih dahulu!`)
+        );
+      let metadata = { contentType: file.type };
+      if ($(`#my-form [name="${idFile}"]`).val())
+        !hapusFile($(`#my-form [name="${idFile}"]`).val());
+      uploadFile(file, metadata, folder).then((res) => {
+        $f7.preloader.hide();
+        if (res.status) {
+          res.url.then((hsl) => {
+            console.log(hsl);
+            // masukka url ke inputan
+            $(`#my-form [name="${idFile}"]`).val(hsl);
+          });
+        } else {
+          $f7.dialog.alert("Gagal menyimpan data");
+        }
+      });
+    };
+    const saveData = () => {
+      $f7.preloader.show();
+      var formData = $f7.form.convertToData("#my-form");
+      console.log(formData);
+      // fungsi simpan
+      tambahData("reklame", formData).then((res) => {
+        $f7.preloader.hide();
+        $f7.dialog.alert(res.pesan);
+        if (res.status) $f7router.refreshPage();
+      });
+      // $f7.dialog.alert(JSON.stringify(formData));
+    };
+
+    $on("pageInit", () => {
+      // do something on page init
+    });
+    $on("pageAfterOut", () => {
+      // page has left the view
+    });
+
+    // component function must return render function
+    return $render;
+  };
+</script>

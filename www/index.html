@@ -1,0 +1,333 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="utf-8" />
+    <!--
+  Customize this policy to fit your own app's needs. For more guidance, please refer to the docs:
+      https://cordova.apache.org/docs/en/latest/
+  Some notes:
+    * https://ssl.gstatic.com is required only on Android and is needed for TalkBack to function properly
+    * Disables use of inline scripts in order to mitigate risk of XSS vulnerabilities. To change this:
+      * Enable inline JS: add 'unsafe-inline' to default-src
+  -->
+    <meta
+      http-equiv="Content-Security-Policy"
+      content="default-src * 'self' 'unsafe-inline' 'unsafe-eval' data: content:"
+    />
+    <meta
+      name="viewport"
+      content="width=device-width, initial-scale=1, maximum-scale=1, minimum-scale=1, user-scalable=no, viewport-fit=cover"
+    />
+
+    <meta name="theme-color" content="#007aff" />
+    <meta name="format-detection" content="telephone=no" />
+    <meta name="msapplication-tap-highlight" content="no" />
+    <title>Reklame</title>
+
+    <link rel="stylesheet" href="./framework7-bundle.min.css" />
+    <link rel="stylesheet" href="./css/app.css" />
+    <!-- <link rel="stylesheet" href="./css/framework7-icons.css" /> -->
+    <link rel="stylesheet" href="./css/icons.css" />
+  </head>
+
+  <body>
+    <div id="app">
+      <!-- Views/Tabs container -->
+      <div class="views tabs safe-areas">
+        <!-- Tabbar for switching views-tabs -->
+        <div class="toolbar toolbar-bottom tabbar-labels">
+          <div class="toolbar-inner">
+            <a href="#view-home" class="tab-link tab-link-active">
+              <i class="icon f7-icons if-not-md">house_fill</i>
+              <i class="icon material-icons if-md">home</i>
+              <span class="tabbar-label">Home</span>
+            </a>
+            <a href="#view-informasi" class="tab-link">
+              <i class="icon f7-icons if-not-md">question_circle_fill</i>
+              <i class="icon material-icons if-md">support_agent_fill</i>
+              <span class="tabbar-label">Informasi</span>
+            </a>
+            <!-- <a href="#view-perizinan" class="tab-link">
+            <i class="icon f7-icons if-not-md">info_fill</i>
+            <i class="icon material-icons if-md">info_fill</i>
+            <span class="tabbar-label">Perizinan</span>
+          </a> -->
+            <a
+              href="#view-akun"
+              class="tab-link akun login-screen-open"
+              data-login-screen="#my-login-screen"
+            >
+              <i class="icon f7-icons if-not-md">person_fill</i>
+              <i class="icon material-icons if-md">person</i>
+              <span class="tabbar-label">Akun</span>
+            </a>
+          </div>
+        </div>
+
+        <!-- Your main view/tab, should have "view-main" class. It also has "tab-active" class -->
+        <div id="view-home" class="view view-main view-init tab tab-active">
+          <div class="page" data-name="home">
+            <!-- Top Navbar -->
+            <div class="navbar">
+              <div class="navbar-bg"></div>
+              <div class="navbar-inner sliding">
+                <div class="title">Home</div>
+              </div>
+            </div>
+
+            <!-- Scrollable page content-->
+            <div class="page-content">
+              <div class="block block-strong">
+                <img src="./assets/img/home/hero1.png" width="100%" />
+              </div>
+              <div class="block">
+                <p><b>DPMPTSP Kabupaten Pinrang</b></p>
+                <p>" Simple Izinnya, Safe Investasinya "</p>
+              </div>
+              <div class="block">
+                <p><b>Visi</b></p>
+                <p>
+                  " Terwujudnya Masyarakat Kabupaten Pinrang yang Sejahtera,
+                  Religius, Harmonis, Mandiri dan Tangguh Mengelola Potensi
+                  Daerah "
+                </p>
+              </div>
+              <div class="block">
+                <p><b>Misi</b></p>
+                <p>
+                  1. Memantapakan Sistem Birokrasi yang baik dan Akuntabel,
+                  Berorientasi pelayanan prima yang didukung dengan Teknologi
+                  Informasi dan Komunikasi (E-Governance)
+                </p>
+                <p>
+                  2. Pemberdayaan masyarakat dalam meningkatkan kesejahteraan
+                  secara berkelanjutan
+                </p>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <!-- Informasi View -->
+        <div
+          id="view-informasi"
+          class="view view-init tab"
+          data-name="informasi"
+          data-url="/informasi/"
+        >
+          <!-- informasi page will be loaded here dynamically from /informasi/ route -->
+        </div>
+        <!-- Perizinan View -->
+        <div
+          id="view-perizinan"
+          class="view view-init tab"
+          data-name="perizinan"
+          data-url="/perizinan/"
+        >
+          <!-- perizinan page will be loaded here dynamically from /perizinan/ route -->
+        </div>
+        <!-- Akun View -->
+        <div
+          id="view-akun"
+          class="view view-init tab"
+          data-name="akun"
+          data-url="/akun/"
+        >
+          <!-- akun page will be loaded here dynamically from /akun/ route -->
+        </div>
+
+        <!-- Catalog View -->
+        <div
+          id="view-catalog"
+          class="view view-init tab"
+          data-name="catalog"
+          data-url="/catalog/"
+        >
+          <!-- Catalog page will be loaded here dynamically from /catalog/ route -->
+        </div>
+
+        <!-- Settings View -->
+        <div
+          id="view-settings"
+          class="view view-init tab"
+          data-name="settings"
+          data-url="/settings/"
+        >
+          <!-- Settings page will be loaded here dynamically from /settings/ route -->
+        </div>
+      </div>
+
+      <!-- Login Screen -->
+      <div class="login-screen" id="my-login-screen">
+        <div class="view">
+          <div class="page">
+            <div class="page-content login-screen-content">
+              <div class="login-screen-title">Login</div>
+              <div class="list">
+                <ul>
+                  <li class="item-content item-input">
+                    <div class="item-inner">
+                      <div class="item-title item-label">Username</div>
+                      <div class="item-input-wrap">
+                        <input
+                          type="text"
+                          name="username"
+                          placeholder="Your username"
+                        />
+                      </div>
+                    </div>
+                  </li>
+                  <li class="item-content item-input">
+                    <div class="item-inner">
+                      <div class="item-title item-label">Password</div>
+                      <div class="item-input-wrap">
+                        <input
+                          type="password"
+                          name="password"
+                          placeholder="Your password"
+                        />
+                      </div>
+                    </div>
+                  </li>
+                </ul>
+              </div>
+              <div class="list">
+                <ul>
+                  <li>
+                    <a href="#" class="item-link list-button login-button"
+                      >Sign In</a
+                    >
+                  </li>
+                </ul>
+                <div class="block-footer">
+                  Belum punya akun?. Klik
+                  <a id="registrasi" href="registrasi" class="link">Sign Up</a>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+      <!-- Registration Screen -->
+      <div class="login-screen" id="my-registration-screen">
+        <div class="view">
+          <div class="page">
+            <div class="page-content login-screen-content">
+              <div class="login-screen-title">Registrasi</div>
+              <div class="list">
+                <form class="list" id="my-form-registration">
+                  <ul>
+                    <li>
+                      <div class="item-content item-input">
+                        <div class="item-inner">
+                          <div class="item-title item-label">Username</div>
+                          <div class="item-input-wrap">
+                            <input
+                              type="text"
+                              name="username"
+                              placeholder="Nama Lengkap"
+                            />
+                          </div>
+                        </div>
+                      </div>
+                    </li>
+                    <li>
+                      <div class="item-content item-input">
+                        <div class="item-inner">
+                          <div class="item-title item-label">Nama Lengkap</div>
+                          <div class="item-input-wrap">
+                            <input
+                              type="text"
+                              name="fullname"
+                              placeholder="Nama Lengkap"
+                            />
+                          </div>
+                        </div>
+                      </div>
+                    </li>
+                    <li>
+                      <div class="item-content item-input">
+                        <div class="item-inner">
+                          <div class="item-title item-label">E-mail</div>
+                          <div class="item-input-wrap">
+                            <input
+                              type="email"
+                              name="email"
+                              placeholder="E-mail"
+                            />
+                          </div>
+                        </div>
+                      </div>
+                    </li>
+                    <li>
+                      <div class="item-content item-input">
+                        <div class="item-inner">
+                          <div class="item-title item-label">Password</div>
+                          <div class="item-input-wrap">
+                            <input
+                              type="text"
+                              name="password"
+                              placeholder="Password"
+                            />
+                          </div>
+                        </div>
+                      </div>
+                    </li>
+                    <li style="display: none">
+                      <div class="item-content item-input">
+                        <div class="item-inner">
+                          <div class="item-title item-label">Role</div>
+                          <div class="item-input-wrap">
+                            <input type="text" name="role" value="member" />
+                          </div>
+                        </div>
+                      </div>
+                    </li>
+                  </ul>
+                </form>
+                <div class="block row">
+                  <div class="col">
+                    <a
+                      class="button button-fill convert-form-to-data registrasi"
+                      href="#"
+                      >Registrasi</a
+                    >
+                  </div>
+                </div>
+                <div class="list">
+                  <div class="block-footer">
+                    Sudah punya akun?. Klik
+                    <a class="link show-form-login">Sign in</a>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+    <!-- CORDOVA_PLACEHOLDER_DONT_REMOVE -->
+    <!-- Cordova APIs -->
+    <script src="js/cordova-app.js"></script>
+
+    <!-- Framework7 library -->
+    <script src="./framework7-bundle.min.js"></script>
+    <!-- Firebase -->
+    <script src="./js/firebase-app.js"></script>
+    <script src="./js/firebase-database.js"></script>
+    <script src="./js/firebase-storage.js"></script>
+    <script src="./js/firebase.js"></script>
+    <!-- App routes -->
+    <script src="js/routes.js"></script>
+    <!-- App store -->
+    <script src="js/store.js"></script>
+    <!-- Firebase -->
+    <!-- App scripts -->
+    <script src="js/app.js"></script>
+
+    <script src="https://html2canvas.hertzen.com/dist/html2canvas.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jspdf/2.5.1/jspdf.umd.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jspdf/2.5.1/polyfills.umd.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/dompurify/2.4.3/purify.min.js"></script>
+  </body>
+</html>

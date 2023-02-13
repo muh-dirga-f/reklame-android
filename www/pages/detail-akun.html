@@ -1,0 +1,147 @@
+<template>
+  <div class="page">
+    <div class="navbar">
+      <div class="navbar-bg"></div>
+      <div class="navbar-inner">
+        <div class="left">
+          <a class="link back" @click="${btnBack}">
+            <i class="icon icon-back"></i>
+            <span class="if-not-md">Back</span>
+          </a>
+        </div>
+        <div class="title">${title}</div>
+      </div>
+    </div>
+    <div class="page-content">
+      <form id="my-form">
+        <div class="block-title">Detail Akun</div>
+        <div class="list no-hairlines-md">
+          <ul>
+            <li>
+              <div class="item-content item-input">
+                <div class="item-inner">
+                  <div class="item-title item-label">Fullname</div>
+                  <div class="item-input-wrap">
+                    <input
+                      name="fullname"
+                      type="text"
+                      placeholder="fullname"
+                      value="${dataUser.fullname}"
+                    />
+                  </div>
+                </div>
+              </div>
+            </li>
+            <li class="disabled">
+              <div class="item-content item-input">
+                <div class="item-inner">
+                  <div class="item-title item-label">Username</div>
+                  <div class="item-input-wrap">
+                    <input
+                      name="username"
+                      type="text"
+                      placeholder="Username"
+                      value="${dataUser.username}"
+                      readonly
+                    />
+                  </div>
+                </div>
+              </div>
+            </li>
+            <li>
+              <div class="item-content item-input">
+                <div class="item-inner">
+                  <div class="item-title item-label">Email</div>
+                  <div class="item-input-wrap">
+                    <input
+                      name="email"
+                      type="text"
+                      placeholder="Email"
+                      value="${dataUser.email}"
+                    />
+                  </div>
+                </div>
+              </div>
+            </li>
+            <li>
+              <div class="item-content item-input">
+                <div class="item-inner">
+                  <div class="item-title item-label">Password</div>
+                  <div class="item-input-wrap">
+                    <input
+                      name="password"
+                      type="password"
+                      placeholder="Password"
+                      value="${dataUser.password}"
+                    />
+                  </div>
+                </div>
+              </div>
+            </li>
+            <li>
+              <div class="item-content item-input">
+                <div class="item-inner">
+                  <div class="item-title item-label">Reenter Password</div>
+                  <div class="item-input-wrap">
+                    <input
+                      name="repassword"
+                      type="password"
+                      placeholder="Reenter Password"
+                      value="${dataUser.password}"
+                    />
+                  </div>
+                </div>
+              </div>
+            </li>
+          </ul>
+        </div>
+        <div class="block block-strong">
+          <div class="row">
+            <div class="col-5=100">
+              <a
+                href="#"
+                class="button button-raised button-fill"
+                @click="${saveData}"
+                >Update Data</a
+              >
+            </div>
+          </div>
+        </div>
+      </form>
+    </div>
+  </div>
+</template>
+<!-- rest of component logic -->
+<script>
+  // script must return/export component function
+  export default (props, { $, $f7, $f7router, $on }) => {
+    const title = "Detail Akun";
+    const dataUser = JSON.parse(localStorage.userdata);
+    const idUser = localStorage.userId;
+
+    const btnBack = () => {
+      $f7router.back();
+    };
+
+    const saveData = () => {
+      let formData = $f7.form.convertToData("#my-form");
+      if (formData.password == formData.repassword) {
+        updateData("users" + "/" + idUser, formData).then((res) => {
+          $f7.dialog.alert(res.pesan);
+        });
+      } else {
+        $f7.dialog.alert("password tidak sama!");
+      }
+    };
+
+    $on("pageInit", () => {
+      // do something on page init
+    });
+    $on("pageAfterOut", () => {
+      // page has left the view
+    });
+
+    // component function must return render function
+    return $render;
+  };
+</script>

@@ -1,0 +1,100 @@
+<template>
+  <div class="page">
+    <div class="navbar">
+      <div class="navbar-bg"></div>
+      <div class="navbar-inner">
+        <div class="left">
+          <a class="link back" @click="${btnBack}">
+            <i class="icon icon-back"></i>
+            <span class="if-not-md">Back</span>
+          </a>
+        </div>
+        <div class="title">${title}</div>
+      </div>
+    </div>
+    <div class="page-content">
+      <div class="block-title">Status Izin</div>
+      <!-- Timeline -->
+      <div class="timeline"></div>
+    </div>
+  </div>
+</template>
+<!-- rest of component logic -->
+<style>
+  .timeline-item-date {
+    width: 80px !important;
+  }
+</style>
+<script>
+  // script must return/export component function
+  export default (props, { $, $f7, $f7router, $on }) => {
+    const title = "Status Izin";
+
+    const btnBack = () => {
+      $f7router.back();
+    };
+
+    $on("pageInit", () => {
+      // do something on page init
+      console.log(props);
+      getData("reklame").then((result) => {
+        // console.log(result.data);
+        for (const val in result.data) {
+          if (Object.hasOwnProperty.call(result.data, val)) {
+            const element = result.data[val];
+            let data = JSON.stringify(element);
+            if (element.nomor_surat == props.id) {
+              console.log(data);
+              $(".timeline").append(`
+                <!-- Timeline item with inner -->
+                <div class="timeline-item">
+                  <div class="timeline-item-date">
+                    ${element.tanggal_dibuat}
+                  </div>
+                  <div class="timeline-item-divider"></div>
+                  <div class="timeline-item-content">
+                    <div class="timeline-item-inner text-color-blue">
+                      Diproses
+                    </div>
+                  </div>
+                </div>
+              `);
+              if (element.status == "diverifikasi") {
+                $(".timeline").append(`
+                  <!-- Timeline item with inner -->
+                  <div class="timeline-item">
+                    <div class="timeline-item-date">${element.tanggal}</div>
+                    <div class="timeline-item-divider"></div>
+                    <div class="timeline-item-content card">
+                      <div class="card-content card-content-padding">
+                        <div class="timeline-item-inner text-color-green">Diverifikasi</div>
+                        <button class="col button button-fill" onClick='downloadSK(${data})'>Unduh SK</button>
+                      </div>
+                    </div>
+                  </div>
+                `);
+              } else if (element.status == "ditolak") {
+                $(".timeline").append(`
+                  <!-- Timeline item with inner -->
+                  <div class="timeline-item">
+                    <div class="timeline-item-date">22 <small>DEC</small></div>
+                    <div class="timeline-item-divider"></div>
+                    <div class="timeline-item-content">
+                      <div class="timeline-item-inner text-color-red">Ditolak</div>
+                    </div>
+                  </div>
+                `);
+              }
+            }
+          }
+        }
+      });
+    });
+    $on("pageAfterOut", () => {
+      // page has left the view
+    });
+
+    // component function must return render function
+    return $render;
+  };
+</script>

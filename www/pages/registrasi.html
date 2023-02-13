@@ -1,0 +1,107 @@
+<template>
+  <div class="page">
+    <div class="navbar">
+      <div class="navbar-bg"></div>
+      <div class="navbar-inner">
+        <div class="left">
+          <a class="link back">
+            <i class="icon icon-back"></i>
+            <span class="if-not-md">Back</span>
+          </a>
+        </div>
+        <div class="title">Form Registrasi Member</div>
+        <div class="right"></div>
+      </div>
+    </div>
+    <div class="page-content">
+      <form class="list" id="my-form">
+        <ul>
+          <li>
+            <div class="item-content item-input">
+              <div class="item-inner">
+                <div class="item-title item-label">Username</div>
+                <div class="item-input-wrap">
+                  <input
+                    type="text"
+                    name="username"
+                    placeholder="Nama Lengkap"
+                  />
+                </div>
+              </div>
+            </div>
+          </li>
+          <li>
+            <div class="item-content item-input">
+              <div class="item-inner">
+                <div class="item-title item-label">Nama Lengkap</div>
+                <div class="item-input-wrap">
+                  <input
+                    type="text"
+                    name="fullname"
+                    placeholder="Nama Lengkap"
+                  />
+                </div>
+              </div>
+            </div>
+          </li>
+          <li>
+            <div class="item-content item-input">
+              <div class="item-inner">
+                <div class="item-title item-label">E-mail</div>
+                <div class="item-input-wrap">
+                  <input type="email" name="email" placeholder="E-mail" />
+                </div>
+              </div>
+            </div>
+          </li>
+          <li>
+            <div class="item-content item-input">
+              <div class="item-inner">
+                <div class="item-title item-label">Password</div>
+                <div class="item-input-wrap">
+                  <input type="text" name="password" placeholder="Password" />
+                </div>
+              </div>
+            </div>
+          </li>
+          <li style="display: none">
+            <div class="item-content item-input">
+              <div class="item-inner">
+                <div class="item-title item-label">Role</div>
+                <div class="item-input-wrap">
+                  <input type="text" name="role" value="member" />
+                </div>
+              </div>
+            </div>
+          </li>
+        </ul>
+      </form>
+      <div class="block block-strong row">
+        <div class="col">
+          <a class="button button-fill convert-form-to-data" href="#"
+            >Registrasi</a
+          >
+        </div>
+      </div>
+    </div>
+  </div>
+</template>
+<script>
+  export default (props, { $, $on, $f7 }) => {
+    $on("pageInit", () => {
+      $(".convert-form-to-data").on("click", function () {
+        var formData = $f7.form.convertToData("#my-form");
+        registrasi(formData).then((res) => {
+          // console.log(res)
+          $f7.dialog.alert(res.pesan);
+          if (res.status) {
+            $f7.views.main.router.back();
+          }
+        });
+        // alert(JSON.stringify(formData));
+      });
+    });
+
+    return $render;
+  };
+</script>

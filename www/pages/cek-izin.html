@@ -1,0 +1,64 @@
+<template>
+  <div class="page">
+    <div class="navbar">
+      <div class="navbar-bg"></div>
+      <div class="navbar-inner">
+        <div class="left">
+          <a class="link back" @click="${btnBack}">
+            <i class="icon icon-back"></i>
+            <span class="if-not-md">Back</span>
+          </a>
+        </div>
+        <div class="title">${title}</div>
+      </div>
+    </div>
+    <div class="page-content">
+      <div class="block-title">List Izin</div>
+      <div class="list links-list">
+        <ul id="list-nomor-izin"></ul>
+      </div>
+    </div>
+  </div>
+</template>
+<!-- rest of component logic -->
+<script>
+  // script must return/export component function
+  export default (props, { $, $f7, $f7router, $on }) => {
+    const title = "Cek Izin";
+    const dataUser = JSON.parse(localStorage.userdata);
+    const username = dataUser.username;
+
+    getData("reklame").then((result) => {
+      // console.log(result.data);
+      for (const val in result.data) {
+        if (Object.hasOwnProperty.call(result.data, val)) {
+          const element = result.data[val];
+          if (element.username == username) {
+            // console.log(element);
+            $("#list-nomor-izin").append(
+              `<li><a href="/status-izin/${element.nomor_surat}">Nomor Izin (${element.nomor_surat})</a></li>`
+            );
+          }
+        }
+      }
+    });
+
+    const btnBack = () => {
+      $f7router.back();
+    };
+
+    const saveData = () => {
+      $f7.dialog.alert("Hello world!");
+    };
+
+    $on("pageInit", () => {
+      // do something on page init
+    });
+    $on("pageAfterOut", () => {
+      // page has left the view
+    });
+
+    // component function must return render function
+    return $render;
+  };
+</script>
