@@ -67,8 +67,8 @@
                     <div class="timeline-item-divider"></div>
                     <div class="timeline-item-content card">
                       <div class="card-content card-content-padding">
-                        <div class="timeline-item-inner text-color-green">Diverifikasi</div>
-                        <button class="col button button-fill" onClick='downloadSK(${data})'>Unduh SK</button>
+                        <div class="text-color-green">Diverifikasi</div><br/>
+                        <button class="col button button-fill button-small" onClick='downloadSK(${data})'>Unduh SK</button>
                       </div>
                     </div>
                   </div>
@@ -77,7 +77,7 @@
                 $(".timeline").append(`
                   <!-- Timeline item with inner -->
                   <div class="timeline-item">
-                    <div class="timeline-item-date">22 <small>DEC</small></div>
+                    <div class="timeline-item-date">${element.tanggal}</div>
                     <div class="timeline-item-divider"></div>
                     <div class="timeline-item-content">
                       <div class="timeline-item-inner text-color-red">Ditolak</div>
